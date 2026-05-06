@@ -223,17 +223,29 @@ nav.stuck{
   border-radius:50%;
   pointer-events:none;
 }
-.hero-big{
-  position:absolute;right:-20px;top:50%;
-  transform:translateY(-50%);
-  font-family:'Cormorant',serif;
-  font-size:clamp(180px,23vw,400px);
-  font-weight:700;font-style:italic;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(196,145,58,.06);
-  line-height:1;pointer-events:none;user-select:none;
-  letter-spacing:-.03em;
+
+/* Giant watermark - Updated for aesthetic visibility */
+.hero-big {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant', serif;
+  font-size: clamp(180px, 23vw, 400px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -.03em;
+  z-index: 1;
+  color: rgba(196, 145, 58, 0.03); 
+  -webkit-text-stroke: 1px rgba(196, 145, 58, 0.25); 
+  text-shadow: 
+    0 10px 50px rgba(196, 145, 58, 0.15), 
+    0 0 120px rgba(196, 145, 58, 0.08);   
 }
+
 .hero-line{
   position:absolute;left:64px;top:0;bottom:0;
   width:1px;
@@ -766,15 +778,21 @@ nav.stuck{
   position:absolute;top:8px;left:8px;right:8px;bottom:8px;
   border:1px solid rgba(196,145,58,.06);
 }
+
+/* Monogram updated to match the Hero's glowing aesthetic */
 .cv-monogram{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
   font-family:'Cormorant',serif;
   font-size:140px;font-weight:700;font-style:italic;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(196,145,58,.1);
   line-height:1;user-select:none;
+  color: rgba(196, 145, 58, 0.03); 
+  -webkit-text-stroke: 1px rgba(196, 145, 58, 0.25); 
+  text-shadow: 
+    0 5px 30px rgba(196, 145, 58, 0.15), 
+    0 0 80px rgba(196, 145, 58, 0.08);
 }
+
 .cv-accent{
   position:absolute;bottom:0;right:0;
   width:180px;height:180px;
