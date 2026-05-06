@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TZ Supply Co. — Est. 2010 Mumbai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Bebas+Neue&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --tan: #c8a96e;
+    --cream: #f5efe4;
+    --warm-white: #faf6ef;
+    --saddle: #8b5e3c;
+    --dark-leather: #2d1f0e;
+    --mid: #6b5740;
+    --fog: #e8dfd0;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--tan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--tan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0.6;
+  }
+  .cursor.expand { width: 18px; height: 18px; }
+  .cursor-ring.expand { width: 52px; height: 52px; opacity: 0.3; }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    mix-blend-mode: normal;
+    transition: background 0.4s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(250,246,239,0.92);
+    backdrop-filter: blur(12px);
+    padding: 18px 60px;
+    border-bottom: 1px solid var(--fog);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--tan); }
+  .nav-links {
+    display: flex;
+    gap: 44px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--tan);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    padding: 10px 24px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--cream); opacity: 1; }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 60px 80px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-estd {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 8vw, 120px);
+    line-height: 0.92;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-title em {
+    display: block;
+    color: var(--tan);
+    font-style: normal;
+  }
+  .hero-sub {
+    margin-top: 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--mid);
+    max-width: 340px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+  .hero-actions {
+    margin-top: 48px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--tan);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: 0;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-ghost {
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: gap 0.3s ease, color 0.3s ease;
+  }
+  .btn-ghost:hover { gap: 16px; color: var(--ink); }
+  .btn-ghost::after { content: '→'; font-size: 14px; }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(135deg, var(--dark-leather) 0%, var(--saddle) 40%, var(--tan) 100%);
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.2s forwards;
+  }
+  .hero-texture {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.04) 3px,
+        rgba(0,0,0,0.04) 4px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.02) 3px,
+        rgba(0,0,0,0.02) 4px
+      );
+  }
+  .hero-overlay-text {
+    position: absolute;
+    bottom: 60px;
+    left: 50px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 180px;
+    color: rgba(255,255,255,0.06);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.2s forwards;
+  }
+  .hero-badge-inner {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(8px);
+  }
+  .badge-tz {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: 0.05em;
+  }
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--tan);
+    border-radius: 50%;
+    margin-bottom: 4px;
+  }
+  .badge-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.4s forwards;
+  }
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--mid);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--tan);
+    animation: scanLine 2s ease infinite;
+  }
+  .scroll-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid);
+    opacity: 0.7;
+  }
+
+  /* MARQUEE STRIP */
+  .marquee-strip {
+    background: var(--ink);
+    padding: 14px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    color: var(--tan);
+    padding: 0 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 50px;
+  }
+  .marquee-item::after {
+    content: '✦';
+    font-style: normal;
+    font-size: 9px;
+    color: rgba(200,169,110,0.4);
+  }
+
+  /* ABOUT SECTION */
+  .section-about {
+    padding: 140px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 100px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .about-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 28px;
+  }
+  .about-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 4vw, 58px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .about-heading em { 
+    font-style: italic; 
+    color: var(--saddle); 
+  }
+  .about-body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--mid);
+    max-width: 480px;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--fog);
+    border: 1px solid var(--fog);
+  }
+  .stat-box {
+    background: var(--warm-white);
+    padding: 44px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+  }
+  .stat-box:hover { background: var(--ink); }
+  .stat-box:hover .stat-num { color: var(--tan); }
+  .stat-box:hover .stat-label { color: var(--fog); opacity: 0.5; }
+  .stat-box:hover .stat-line { background: var(--saddle); }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--ink);
+    line-height: 1;
+    transition: color 0.4s ease;
+  }
+  .stat-line {
+    width: 30px;
+    height: 2px;
+    background: var(--tan);
+    margin: 12px 0;
+    transition: background 0.4s ease;
+  }
+  .stat-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    opacity: 0.8;
+    transition: color 0.4s ease, opacity 0.4s ease;
+  }
+
+  /* COLLECTION SECTION */
+  .section-collection {
+    padding: 60px 0 120px;
+    background: var(--ink);
+    overflow: hidden;
+  }
+  .collection-header {
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .collection-title-group {}
+  .section-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--tan);
+    opacity: 0.8;
+    margin-bottom: 16px;
+  }
+  .section-title-large {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 5vw, 80px);
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+  }
+  .collection-view-all {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--tan);
+    text-decoration: none;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: gap 0.3s ease, opacity 0.3s ease;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(200,169,110,0.3);
+  }
+  .collection-view-all:hover { gap: 18px; opacity: 1; }
+  .collection-view-all::after { content: '→'; }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    padding: 0 2px;
+  }
+  .product-card {
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+  }
+  .product-card-bg {
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-visual {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .product-card:hover .product-visual { transform: scale(1.06); }
+
+  /* Unique leather textures for each card */
+  .pv-1 { background: linear-gradient(160deg, #3d2710 0%, #6b4423 35%, #8b5e3c 70%, #c8a96e 100%); }
+  .pv-2 { background: linear-gradient(140deg, #1a1208 0%, #3d2710 40%, #5c3a20 100%); }
+  .pv-3 { background: linear-gradient(155deg, #8b5e3c 0%, #c8a96e 45%, #d4b57e 100%); }
+  .pv-4 { background: linear-gradient(145deg, #2d1f0e 0%, #4a3220 40%, #6b4a2e 100%); }
+
+  .product-texture {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.02) 0px,
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 8px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(0,0,0,0.05) 0px,
+        rgba(0,0,0,0.05) 1px,
+        transparent 1px,
+        transparent 8px
+      );
+  }
+
+  .product-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+    opacity: 0.7;
+    transition: opacity 0.4s ease;
+  }
+  .product-card:hover .product-overlay { opacity: 0.9; }
+
+  .product-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 52px;
+    opacity: 0.15;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+  }
+  .product-card:hover .product-icon { opacity: 0.25; transform: translate(-50%, -53%); }
+
+  .product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 28px 32px;
+  }
+  .product-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 6px;
+    opacity: 0.8;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .product-price {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: rgba(245,239,228,0.65);
+  }
+  .product-action {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(200,169,110,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tan);
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+    text-decoration: none;
+  }
+  .product-card:hover .product-action {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .product-action:hover { background: var(--tan); color: var(--ink); }
+
+  /* CRAFTSMANSHIP SECTION */
+  .section-craft {
+    padding: 160px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .craft-visual {
+    position: relative;
+    height: 580px;
+  }
+  .craft-box-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 80px;
+    bottom: 80px;
+    background: linear-gradient(135deg, var(--dark-leather), var(--saddle));
+    overflow: hidden;
+  }
+  .craft-box-accent {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: var(--tan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .craft-accent-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .craft-accent-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dark-leather);
+    opacity: 0.7;
+  }
+  .craft-texture-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 4px,
+        rgba(255,255,255,0.03) 4px,
+        rgba(255,255,255,0.03) 5px
+      );
+  }
+  .craft-stitching {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 100px;
+    bottom: 100px;
+    border: 2px dashed rgba(200,169,110,0.2);
+    pointer-events: none;
+  }
+
+  .craft-content {}
+  .craft-process {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .process-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--fog);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+  }
+  .process-item:last-child { border-bottom: none; }
+  .process-item:hover { opacity: 1; }
+  .process-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--tan);
+    line-height: 1;
+    min-width: 40px;
+    opacity: 0.6;
+  }
+  .process-text {}
+  .process-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .process-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--mid);
+  }
+
+  /* TESTIMONIAL / PHILOSOPHY */
+  .section-philosophy {
+    background: var(--dark-leather);
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .philosophy-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 260px;
+    color: rgba(255,255,255,0.025);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+  .philosophy-quote {
+    position: relative;
+    z-index: 2;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(26px, 3vw, 44px);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--cream);
+    max-width: 820px;
+    margin: 0 auto 36px;
+  }
+  .philosophy-quote::before {
+    content: '"';
+    display: block;
+    font-size: 100px;
+    color: var(--tan);
+    line-height: 0.6;
+    margin-bottom: 20px;
+    opacity: 0.5;
+    font-style: normal;
+  }
+  .philosophy-attr {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--tan);
+    opacity: 0.6;
+  }
+
+  /* MATERIALS */
+  .section-materials {
+    padding: 120px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .materials-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 70px;
+  }
+  .materials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--fog);
+    border: 1px solid var(--fog);
+  }
+  .material-card {
+    background: var(--warm-white);
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s ease;
+  }
+  .material-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--tan);
+    transition: height 0.5s ease;
+  }
+  .material-card:hover::before { height: 100%; }
+  .material-card:hover { background: var(--cream); }
+  .material-icon {
+    font-size: 36px;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .material-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .material-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--mid);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 90px 60px 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 70px;
+  }
+  .footer-brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .footer-brand-name span { color: var(--tan); }
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--tan);
+    opacity: 0.7;
+    margin-bottom: 24px;
+  }
+  .footer-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(245,239,228,0.45);
+    max-width: 280px;
+  }
+  .footer-col-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 24px;
+    opacity: 0.7;
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-links a {
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245,239,228,0.5);
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: block;
+  }
+  .footer-links a:hover { color: var(--tan); padding-left: 6px; }
+  .footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(245,239,228,0.3);
+  }
+  .footer-mumbai {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--tan);
+    opacity: 0.5;
+  }
+
+  /* KEYFRAMES */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scanLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">TZ<span>.</span> Supply Co.</a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#craft">Craft</a></li>
+    <li><a href="#materials">Materials</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#collection" class="nav-cta">Shop Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-estd">Est. 2010 — Mumbai, India</p>
+    <h1 class="hero-title">
+      Crafted<br>
+      to Last<br>
+      <em>Forever.</em>
+    </h1>
+    <p class="hero-sub">
+      Premium leather goods for those who demand substance over style — though we provide both.
+    </p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn-primary"><span>Explore Collection</span></a>
+      <a href="#craft" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-bg">
+      <div class="hero-texture"></div>
+      <div class="hero-overlay-text">TZ</div>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-inner">
+        <div class="badge-tz">tz.</div>
+        <div class="badge-dot"></div>
+        <div class="badge-sub">Supply Co.</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll to discover</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item">Full Grain Leather</span>
+    <span class="marquee-item">Handcrafted in Mumbai</span>
+    <span class="marquee-item">Est. 2010</span>
+    <span class="marquee-item">Premium Wallets</span>
+    <span class="marquee-item">Fine Belts</span>
+    <span class="marquee-item">Leather Accessories</span>
+    <span class="marquee-item">Made to Last</span>
+    <span class="marquee-item">TZ Supply Co.</span>
+    <span class="marquee-item">Full Grain Leather</span>
+    <span class="marquee-item">Handcrafted in Mumbai</span>
+    <span class="marquee-item">Est. 2010</span>
+    <span class="marquee-item">Premium Wallets</span>
+    <span class="marquee-item">Fine Belts</span>
+    <span class="marquee-item">Leather Accessories</span>
+    <span class="marquee-item">Made to Last</span>
+    <span class="marquee-item">TZ Supply Co.</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section-about" id="about">
+  <div>
+    <p class="about-label reveal">Our Heritage</p>
+    <h2 class="about-heading reveal reveal-delay-1">
+      More than leather.<br>
+      <em>A philosophy of permanence.</em>
+    </h2>
+    <p class="about-body reveal reveal-delay-2">
+      Since 2010, TZ Supply Co. has been crafting leather goods in Mumbai that refuse to be discarded. In a world of disposable fashion, we make things you'll hand down — wallets that soften with every year, belts that outlive trends, accessories that only get better.
+    </p>
+  </div>
+  <div class="about-stats reveal reveal-delay-2">
+    <div class="stat-box">
+      <div class="stat-num">15</div>
+      <div class="stat-line"></div>
+      <div class="stat-label">Years of Craft</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">100%</div>
+      <div class="stat-line"></div>
+      <div class="stat-label">Full Grain Leather</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">40+</div>
+      <div class="stat-line"></div>
+      <div class="stat-label">Products Crafted</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">MUM</div>
+      <div class="stat-line"></div>
+      <div class="stat-label">Made in Mumbai</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="section-collection" id="collection">
+  <div class="collection-header">
+    <div class="collection-title-group">
+      <p class="section-label">The Collection</p>
+      <h2 class="section-title-large">SHOP<br>THE RANGE</h2>
+    </div>
+    <a href="#" class="collection-view-all">View All Pieces</a>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-card-bg">
+        <div class="product-visual pv-1">
+          <div class="product-texture"></div>
+        </div>
+        <div class="product-overlay"></div>
+        <div class="product-icon">👜</div>
+        <div class="product-info">
+          <p class="product-tag">Bestseller</p>
+          <h3 class="product-name">Slim Bifold<br>Wallet</h3>
+          <p class="product-price">From ₹ 2,200</p>
+        </div>
+        <a href="#" class="product-action">+</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-bg">
+        <div class="product-visual pv-2">
+          <div class="product-texture"></div>
+        </div>
+        <div class="product-overlay"></div>
+        <div class="product-icon">🔖</div>
+        <div class="product-info">
+          <p class="product-tag">New Arrival</p>
+          <h3 class="product-name">Classic Dress<br>Belt</h3>
+          <p class="product-price">From ₹ 1,800</p>
+        </div>
+        <a href="#" class="product-action">+</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-bg">
+        <div class="product-visual pv-3">
+          <div class="product-texture"></div>
+        </div>
+        <div class="product-overlay"></div>
+        <div class="product-icon">🗂️</div>
+        <div class="product-info">
+          <p class="product-tag">Signature</p>
+          <h3 class="product-name">Card Holder<br>Sleeve</h3>
+          <p class="product-price">From ₹ 1,200</p>
+        </div>
+        <a href="#" class="product-action">+</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-bg">
+        <div class="product-visual pv-4">
+          <div class="product-texture"></div>
+        </div>
+        <div class="product-overlay"></div>
+        <div class="product-icon">💼</div>
+        <div class="product-info">
+          <p class="product-tag">Premium</p>
+          <h3 class="product-name">Zip-Around<br>Wallet</h3>
+          <p class="product-price">From ₹ 3,400</p>
+        </div>
+        <a href="#" class="product-action">+</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT -->
+<section class="section-craft" id="craft">
+  <div class="craft-visual reveal">
+    <div class="craft-box-main">
+      <div class="craft-texture-overlay"></div>
+      <div class="craft-stitching"></div>
+    </div>
+    <div class="craft-box-accent">
+      <div class="craft-accent-text">TZ.</div>
+      <div class="craft-accent-sub">Mumbai Craft</div>
+    </div>
+  </div>
+  <div class="craft-content">
+    <p class="about-label reveal">Our Process</p>
+    <h2 class="about-heading reveal reveal-delay-1">
+      Every stitch<br>
+      <em>tells a story.</em>
+    </h2>
+    <div class="craft-process">
+      <div class="process-item reveal reveal-delay-1">
+        <div class="process-num">01</div>
+        <div class="process-text">
+          <h4 class="process-title">Source & Select</h4>
+          <p class="process-desc">We source only full-grain hides — the highest quality cut, where the natural grain is preserved intact. No corrections, no coatings.</p>
+        </div>
+      </div>
+      <div class="process-item reveal reveal-delay-2">
+        <div class="process-num">02</div>
+        <div class="process-text">
+          <h4 class="process-title">Cut by Hand</h4>
+          <p class="process-desc">Each pattern is cut by hand using steel rule dies, ensuring precision and minimal wastage. No shortcuts, no automation.</p>
+        </div>
+      </div>
+      <div class="process-item reveal reveal-delay-3">
+        <div class="process-num">03</div>
+        <div class="process-text">
+          <h4 class="process-title">Stitch & Burnish</h4>
+          <p class="process-desc">Saddle-stitched with waxed linen thread. Edges are burnished by hand and finished with natural beeswax for water resistance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section-philosophy">
+  <div class="philosophy-bg-text">LEATHER</div>
+  <blockquote class="philosophy-quote reveal">
+    Quality is not a compromise we make. It is the only reason we make anything at all.
+  </blockquote>
+  <p class="philosophy-attr reveal reveal-delay-1">TZ Supply Co. — Mumbai, Est. 2010</p>
+</section>
+
+<!-- MATERIALS -->
+<section class="section-materials" id="materials">
+  <div class="materials-header">
+    <div>
+      <p class="about-label reveal">What We Use</p>
+      <h2 class="section-title-large reveal reveal-delay-1" style="color: var(--ink); font-size: clamp(40px,4vw,68px);">MATERIALS</h2>
+    </div>
+  </div>
+  <div class="materials-grid">
+    <div class="material-card reveal">
+      <span class="material-icon">🐂</span>
+      <h3 class="material-name">Full Grain Leather</h3>
+      <p class="material-desc">The strongest, most durable layer of the hide. It develops a rich patina with age, making each piece uniquely yours over time. The only leather that actually improves with use.</p>
+    </div>
+    <div class="material-card reveal reveal-delay-1">
+      <span class="material-icon">🪡</span>
+      <h3 class="material-name">Waxed Linen Thread</h3>
+      <p class="material-desc">Our saddle stitching uses hand-waxed linen thread, stronger than machine polyester stitching. Even if one stitch breaks, the rest hold — unlike machine lockstitch.</p>
+    </div>
+    <div class="material-card reveal reveal-delay-2">
+      <span class="material-icon">🔩</span>
+      <h3 class="material-name">Solid Brass Hardware</h3>
+      <p class="material-desc">All buckles, rivets, and closures are solid brass — rust-proof and developing a natural patina that matches the leather aging of your piece. Nothing chrome-plated.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">TZ<span>.</span> Supply Co.</div>
+      <div class="footer-tagline">Est. 2010, Mumbai</div>
+      <p class="footer-desc">Premium leather goods crafted in Mumbai for those who understand that the best things in life only get better with time.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Collection</p>
+      <ul class="footer-links">
+        <li><a href="#">Wallets</a></li>
+        <li><a href="#">Belts</a></li>
+        <li><a href="#">Card Holders</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">New Arrivals</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-links">
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Craftsmanship</a></li>
+        <li><a href="#">Materials</a></li>
+        <li><a href="#">Care Guide</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Connect</p>
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="#">Mumbai Showroom</a></li>
+        <li><a href="#">Custom Orders</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 TZ Supply Co. All rights reserved. Registered Trade Mark, Mumbai.</p>
+    <p class="footer-mumbai">Crafted with pride in Mumbai, India</p>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .product-card, .stat-box, .material-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('expand');
+      cursorRing.classList.add('expand');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('expand');
+      cursorRing.classList.remove('expand');
+    });
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Marquee duplicate content (already duplicated in HTML for seamlessness)
+</script>
+</body>
+</html>
