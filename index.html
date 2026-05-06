@@ -4,6 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>TZ Supply Co. — Premium Leather Goods, Mumbai</title>
+
+<meta name="description" content="TZ Supply Co. crafts premium, full-grain leather goods in Mumbai. Explore our collection of handcrafted belts, wallets, and accessories built to outlast trends.">
+<meta property="og:title" content="TZ Supply Co. | Premium Leather Goods">
+<meta property="og:description" content="Handcrafted full-grain leather goods built to outlast trends. Made in Mumbai.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.tzsupplyco.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TZ Supply Co.",
+  "url": "https://www.tzsupplyco.com",
+  "logo": "https://www.tzsupplyco.com/logo.png",
+  "foundingDate": "2010",
+  "description": "Premium full-grain leather goods handcrafted in Mumbai.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Building 305, Abdulrehman Street, Lucky Market",
+    "addressLocality": "Mumbai",
+    "addressRegion": "Maharashtra",
+    "postalCode": "400003",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-98209-80035",
+    "contactType": "customer service"
+  }
+}
+</script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  // gtag('js', new Date());
+  // gtag('config', 'G-XXXXXXXXXX'); 
+  
+  // Custom tracking wrapper
+  window.trackEvent = function(eventName, eventData) {
+      console.log(`[Analytics Event Tracked] ${eventName}`, eventData);
+      // gtag('event', eventName, eventData);
+  };
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=DM+Sans:wght@200;300;400;500&family=Cormorant:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
@@ -36,9 +80,26 @@
 html{scroll-behavior:smooth;font-size:16px;}
 body{background:var(--black);color:var(--mist);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
 
+/* ---- ACCESSIBILITY & PERFORMANCE ---- */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    #cur, #cur-r { display: none !important; }
+    body { cursor: auto !important; }
+}
+
 /* ---- CURSOR ---- */
-#cur{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s;}
-#cur-r{position:fixed;width:28px;height:28px;border:1px solid rgba(196,145,58,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .35s cubic-bezier(.25,.46,.45,.94),height .35s cubic-bezier(.25,.46,.45,.94),opacity .35s;}
+#cur{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s; will-change: transform, width, height, opacity;}
+#cur-r{position:fixed;width:28px;height:28px;border:1px solid rgba(196,145,58,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .35s cubic-bezier(.25,.46,.45,.94),height .35s cubic-bezier(.25,.46,.45,.94),opacity .35s; will-change: transform, width, height, opacity;}
 #cur.big{width:0;height:0;opacity:0;}
 #cur-r.big{width:52px;height:52px;border-color:var(--gold);opacity:.6;}
 #cur.link{width:10px;height:10px;}
@@ -135,7 +196,6 @@ nav.stuck{
   display:flex;flex-direction:column;justify-content:center;
   padding:0 64px;
 }
-/* Deep layered background */
 .hero-bg{
   position:absolute;inset:0;
   background:radial-gradient(ellipse 80% 80% at 30% 60%, #1a1005 0%, #0a0804 40%, #080706 100%);
@@ -147,7 +207,6 @@ nav.stuck{
     repeating-linear-gradient(0deg, transparent 0, transparent 79px, rgba(196,145,58,.015) 79px, rgba(196,145,58,.015) 80px);
   pointer-events:none;
 }
-/* Floating orb for depth */
 .hero-orb{
   position:absolute;
   width:700px;height:700px;
@@ -164,7 +223,6 @@ nav.stuck{
   border-radius:50%;
   pointer-events:none;
 }
-/* Giant watermark */
 .hero-big{
   position:absolute;right:-20px;top:50%;
   transform:translateY(-50%);
@@ -176,7 +234,6 @@ nav.stuck{
   line-height:1;pointer-events:none;user-select:none;
   letter-spacing:-.03em;
 }
-/* Thin vertical line accent */
 .hero-line{
   position:absolute;left:64px;top:0;bottom:0;
   width:1px;
@@ -236,8 +293,6 @@ nav.stuck{
   transition:all .3s;display:inline-block;
 }
 .btn-outline:hover{border-color:var(--gold);color:var(--gold);}
-
-/* Hero bottom bar */
 .hero-bottom{
   position:absolute;bottom:0;left:0;right:0;
   z-index:2;
@@ -247,7 +302,6 @@ nav.stuck{
   background:linear-gradient(to top, rgba(8,7,6,.6), transparent);
 }
 .hero-stats{display:flex;gap:64px;}
-.h-stat{}
 .h-stat span{
   display:block;
   font-family:'Cormorant Garamond',serif;
@@ -363,7 +417,6 @@ nav.stuck{
   background:var(--off-black);padding:100px 0;
   position:relative;
 }
-/* Subtle diagonal texture */
 .products-section::before{
   content:'';position:absolute;inset:0;
   background:repeating-linear-gradient(
@@ -387,7 +440,6 @@ nav.stuck{
 }
 .view-all-link:hover{opacity:1;padding-bottom:6px;}
 
-/* Filter tabs */
 .filter-bar{
   padding:0 64px;margin-bottom:52px;
   display:flex;gap:6px;flex-wrap:wrap;
@@ -410,7 +462,6 @@ nav.stuck{
   .filter-btn{cursor:pointer;}
 }
 
-/* Product grid */
 .p-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:1px;background:var(--border);
@@ -437,7 +488,6 @@ nav.stuck{
 }
 .p-card:hover .p-visual{transform:scale(1.1);}
 
-/* Deeper gradient overlay */
 .p-overlay{
   position:absolute;inset:0;
   background:linear-gradient(
@@ -496,7 +546,6 @@ nav.stuck{
 @media(max-width:768px){.p-actions{position:static;transform:none;padding:10px;background:var(--charcoal);}}
 .p-card:hover .p-actions{transform:translateY(0);}
 
-/* View detail button (triggers lightbox) */
 .p-btn-detail{
   width:42px;height:42px;
   background:rgba(255,255,255,.07);
@@ -539,7 +588,6 @@ nav.stuck{
     repeating-linear-gradient(45deg,rgba(255,255,255,.022) 0,rgba(255,255,255,.022) 1px,transparent 1px,transparent 8px),
     repeating-linear-gradient(-45deg,rgba(0,0,0,.05) 0,rgba(0,0,0,.05) 1px,transparent 1px,transparent 8px);
 }
-/* Sheen on leather */
 .p-visual::after{
   content:'';
   position:absolute;top:0;left:-100%;right:0;bottom:0;
@@ -574,7 +622,6 @@ nav.stuck{
 .lb-overlay.open .lb-modal{transform:translateY(0) scale(1);}
 @media(max-width:640px){.lb-modal{grid-template-columns:1fr;max-height:95vh;overflow-y:auto;width:100vw;height:100dvh;max-height:100dvh;border:none;}}
 
-/* Image panel */
 .lb-images{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--charcoal);}
 @media(max-width:640px){.lb-images{aspect-ratio:4/3;}}
 .lb-slides{display:flex;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1);}
@@ -582,7 +629,6 @@ nav.stuck{
   min-width:100%;height:100%;position:relative;flex-shrink:0;
 }
 .lb-slide-inner{position:absolute;inset:0;}
-/* slide texture variation */
 .lb-slide:nth-child(1) .lb-slide-inner{filter:brightness(1);}
 .lb-slide:nth-child(2) .lb-slide-inner{filter:brightness(.8) saturate(1.2);}
 .lb-slide:nth-child(3) .lb-slide-inner{filter:brightness(.65) saturate(.9);}
@@ -593,22 +639,18 @@ nav.stuck{
     repeating-linear-gradient(40deg,rgba(255,255,255,.028) 0,rgba(255,255,255,.028) 1px,transparent 1px,transparent 7px),
     repeating-linear-gradient(-40deg,rgba(0,0,0,.06) 0,rgba(0,0,0,.06) 1px,transparent 1px,transparent 7px);
 }
-/* Stitching effect on slides */
 .lb-stitch{
   position:absolute;
   top:16px;left:16px;right:16px;bottom:16px;
   border:1px dashed rgba(255,255,255,.07);
   pointer-events:none;
 }
-/* Slide label */
 .lb-slide-label{
   position:absolute;bottom:20px;left:20px;
   font-size:8.5px;letter-spacing:.35em;text-transform:uppercase;
   color:rgba(255,255,255,.4);
   font-family:'DM Sans',sans-serif;
 }
-
-/* Slide nav */
 .lb-nav-btn{
   position:absolute;top:50%;transform:translateY(-50%);
   width:36px;height:36px;
@@ -621,8 +663,6 @@ nav.stuck{
 .lb-nav-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--black);}
 .lb-prev{left:12px;}
 .lb-next{right:12px;}
-
-/* Dots */
 .lb-dots{
   position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
   display:flex;gap:6px;z-index:2;
@@ -634,8 +674,6 @@ nav.stuck{
   cursor:pointer;
 }
 .lb-dot.active{background:var(--gold);transform:scale(1.2);}
-
-/* Info panel */
 .lb-info{
   padding:48px 40px;
   display:flex;flex-direction:column;
@@ -695,7 +733,7 @@ nav.stuck{
 }
 .lb-cart-btn:hover{border-color:var(--gold);color:var(--gold);}
 
-/* ---- CRAFT SECTION ---- */
+/* ---- CRAFT & SECTIONS ---- */
 .craft-outer{padding:0;position:relative;}
 .craft-wrap{
   display:grid;grid-template-columns:1fr 1fr;
@@ -704,7 +742,6 @@ nav.stuck{
   padding:130px 64px;
 }
 .craft-visual-wrap{position:relative;height:600px;}
-/* Layered visual with depth */
 .cv-shadow{
   position:absolute;top:80px;left:80px;right:-20px;bottom:-20px;
   background:rgba(196,145,58,.04);
@@ -752,7 +789,6 @@ nav.stuck{
   color:var(--black);line-height:1;font-style:italic;
 }
 .cv-acc-txt{font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(0,0,0,.55);}
-/* Floating dot detail */
 .cv-dots{
   position:absolute;top:0;right:0;width:80px;bottom:80px;
   display:grid;align-content:center;justify-content:center;
@@ -792,13 +828,11 @@ nav.stuck{
   .cv-monogram{font-size:90px;}
 }
 
-/* ---- PHILOSOPHY ---- */
 .philosophy{
   background:var(--charcoal);
   padding:140px 64px;
   text-align:center;position:relative;overflow:hidden;
 }
-/* Layered background texture */
 .phi-lines{
   position:absolute;inset:0;
   background:repeating-linear-gradient(
@@ -842,7 +876,6 @@ nav.stuck{
 }
 @media(max-width:768px){.philosophy{padding:90px 24px;}}
 
-/* ---- MATERIALS ---- */
 .mat-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:1px;background:var(--border);
@@ -860,7 +893,6 @@ nav.stuck{
 }
 .mat-card:hover::before{height:100%;}
 .mat-card:hover{background:var(--charcoal);}
-/* Background number */
 .mat-card-n{
   position:absolute;bottom:-10px;right:20px;
   font-family:'Cormorant',serif;font-size:120px;
@@ -909,7 +941,6 @@ nav.stuck{
 .c-txt .lbl{font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
 .c-txt a,.c-txt p{font-size:14px;color:var(--text-mid);text-decoration:none;line-height:1.65;}
 .c-txt a:hover{color:var(--gold);}
-.contact-form-wrap{}
 .form-title{
   font-family:'Cormorant Garamond',serif;
   font-size:32px;font-weight:500;
@@ -1066,37 +1097,25 @@ footer::before{
 .cart-clear:hover{border-color:var(--gold);color:var(--gold);}
 @media(max-width:768px){.cart-wa-btn,.cart-clear{cursor:pointer;}}
 
-/* ---- REVEAL ---- */
+/* ---- REVEAL & ANIMATIONS ---- */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s ease;}
 .reveal.in{opacity:1;transform:none;}
 .rd1{transition-delay:.12s;}.rd2{transition-delay:.24s;}.rd3{transition-delay:.36s;}.rd4{transition-delay:.48s;}
 
-/* ---- ANIMATIONS ---- */
 @keyframes up{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @keyframes scan{0%{left:-100%;}100%{left:100%;}}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-
-/* Shimmering gold line */
-.gold-rule{
-  width:100%;height:1px;
-  background:linear-gradient(to right,transparent,rgba(196,145,58,.4) 30%,rgba(196,145,58,.4) 70%,transparent);
-  margin:0;border:none;
-}
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div id="cur"></div>
-<div id="cur-r"></div>
+<div id="cur" aria-hidden="true"></div>
+<div id="cur-r" aria-hidden="true"></div>
 
-<!-- WA FLOAT -->
-<a class="f-wa-float" href="https://wa.me/919820980035" target="_blank" title="Chat on WhatsApp">💬</a>
+<a class="f-wa-float" href="https://wa.me/919820980035" target="_blank" title="Chat on WhatsApp" aria-label="Chat with us on WhatsApp">💬</a>
 
-<!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
+  <a href="#" class="nav-logo" aria-label="TZ Supply Co. Home">
     <span class="nav-logo-tz">TZ.</span>
     Supply Co.
   </a>
@@ -1106,16 +1125,15 @@ footer::before{
     <li><a href="#materials" onclick="closeMenu()">Materials</a></li>
     <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
   </ul>
-  <button class="nav-cart" onclick="openCart()">
+  <button class="nav-cart" aria-label="Open Cart" onclick="openCart()">
     <span>Cart</span>
-    <span class="cart-count" id="cartCount">0</span>
+    <span class="cart-count" id="cartCount" aria-live="polite">0</span>
   </button>
-  <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Menu">
+  <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Toggle Mobile Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-grain"></div>
@@ -1149,8 +1167,7 @@ footer::before{
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="strip">
+<div class="strip" aria-hidden="true">
   <div class="strip-track">
     <span class="strip-item">Full Grain Leather</span>
     <span class="strip-item">Handcrafted Mumbai</span>
@@ -1171,7 +1188,6 @@ footer::before{
   </div>
 </div>
 
-<!-- ABOUT -->
 <section class="about-outer" id="about">
   <div class="about-decor"></div>
   <div class="about-grid">
@@ -1190,7 +1206,6 @@ footer::before{
   </div>
 </section>
 
-<!-- COLLECTION -->
 <section class="products-section" id="collection">
   <div class="products-head reveal">
     <div>
@@ -1199,21 +1214,20 @@ footer::before{
     </div>
     <a href="#contact" class="view-all-link">Bulk Orders →</a>
   </div>
-  <div class="filter-bar" id="filterBar">
-    <button class="filter-btn active" data-cat="all">All Pieces</button>
-    <button class="filter-btn" data-cat="wallets">Wallets</button>
-    <button class="filter-btn" data-cat="belts">Belts</button>
-    <button class="filter-btn" data-cat="cardholders">Card Holders</button>
-    <button class="filter-btn" data-cat="bags">Bags & Cases</button>
-    <button class="filter-btn" data-cat="accessories">Accessories</button>
+  <div class="filter-bar" id="filterBar" role="tablist" aria-label="Product Categories">
+    <button class="filter-btn active" role="tab" aria-selected="true" data-cat="all">All Pieces</button>
+    <button class="filter-btn" role="tab" aria-selected="false" data-cat="wallets">Wallets</button>
+    <button class="filter-btn" role="tab" aria-selected="false" data-cat="belts">Belts</button>
+    <button class="filter-btn" role="tab" aria-selected="false" data-cat="cardholders">Card Holders</button>
+    <button class="filter-btn" role="tab" aria-selected="false" data-cat="bags">Bags & Cases</button>
+    <button class="filter-btn" role="tab" aria-selected="false" data-cat="accessories">Accessories</button>
   </div>
-  <div class="p-grid" id="productGrid"></div>
+  <div class="p-grid" id="productGrid" role="region" aria-live="polite"></div>
 </section>
 
-<!-- CRAFT -->
 <section class="craft-outer" id="craft">
   <div class="craft-wrap">
-    <div class="craft-visual-wrap reveal">
+    <div class="craft-visual-wrap reveal" aria-hidden="true">
       <div class="cv-shadow"></div>
       <div class="cv-main">
         <div class="cv-grain-layer"></div>
@@ -1252,43 +1266,40 @@ footer::before{
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
 <section class="philosophy">
   <div class="phi-lines"></div>
-  <div class="phi-bg">LEATHER</div>
-  <span class="phi-ornament reveal">✦ ✦ ✦</span>
+  <div class="phi-bg" aria-hidden="true">LEATHER</div>
+  <span class="phi-ornament reveal" aria-hidden="true">✦ ✦ ✦</span>
   <blockquote class="phi-quote reveal rd1">Quality is not a compromise we make. It is the only reason we make anything at all.</blockquote>
   <div class="phi-rule reveal rd2"></div>
   <p class="phi-attr reveal rd2">TZ Supply Co. — Mumbai, Est. 2010</p>
 </section>
 
-<!-- MATERIALS -->
 <section class="section" id="materials">
   <span class="s-label reveal">What We Use</span>
   <h2 class="s-title reveal rd1">Materials</h2>
   <div class="mat-grid">
     <div class="mat-card reveal">
-      <div class="mat-card-n">01</div>
-      <span class="mat-icon">🐂</span>
+      <div class="mat-card-n" aria-hidden="true">01</div>
+      <span class="mat-icon" aria-hidden="true">🐂</span>
       <h3 class="mat-name">Full Grain Leather</h3>
       <p class="mat-desc">The strongest, most durable layer of the hide. It develops a rich patina with age, making each piece uniquely yours. The only leather that actually improves with use.</p>
     </div>
     <div class="mat-card reveal rd1">
-      <div class="mat-card-n">02</div>
-      <span class="mat-icon">🪡</span>
+      <div class="mat-card-n" aria-hidden="true">02</div>
+      <span class="mat-icon" aria-hidden="true">🪡</span>
       <h3 class="mat-name">Waxed Linen Thread</h3>
       <p class="mat-desc">Our saddle stitching uses hand-waxed linen thread — stronger than machine polyester. Even if one stitch breaks, the rest hold. Built to outlast machine lockstitch.</p>
     </div>
     <div class="mat-card reveal rd2">
-      <div class="mat-card-n">03</div>
-      <span class="mat-icon">🔩</span>
+      <div class="mat-card-n" aria-hidden="true">03</div>
+      <span class="mat-icon" aria-hidden="true">🔩</span>
       <h3 class="mat-name">Solid Brass Hardware</h3>
       <p class="mat-desc">All buckles, rivets, and closures are solid brass — rust-proof and developing a natural patina that matches the leather as your piece ages. Nothing chrome-plated.</p>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="contact-inner">
     <div class="contact-info">
@@ -1296,15 +1307,15 @@ footer::before{
       <h2 class="s-title reveal rd1">Bulk Orders &amp; <em>Enquiries</em></h2>
       <p class="contact-intro reveal rd2">Interested in bulk orders, corporate gifting, or custom leather goods? We work with businesses across India. Reach out and let's build something lasting.</p>
       <div class="c-detail reveal rd2">
-        <div class="c-icon">📞</div>
+        <div class="c-icon" aria-hidden="true">📞</div>
         <div class="c-txt"><div class="lbl">Phone / WhatsApp</div><a href="tel:+919820980035">+91 98209 80035</a></div>
       </div>
       <div class="c-detail reveal rd3">
-        <div class="c-icon">✉️</div>
+        <div class="c-icon" aria-hidden="true">✉️</div>
         <div class="c-txt"><div class="lbl">Email</div><a href="mailto:zaki.khajurvala05@gmail.com">zaki.khajurvala05@gmail.com</a></div>
       </div>
       <div class="c-detail reveal rd3">
-        <div class="c-icon">📍</div>
+        <div class="c-icon" aria-hidden="true">📍</div>
         <div class="c-txt"><div class="lbl">Showroom Address</div><p>Building 305, Abdulrehman Street<br>Lucky Market, Mumbai 400 003<br>Maharashtra, India</p></div>
       </div>
     </div>
@@ -1313,13 +1324,13 @@ footer::before{
       <p class="form-sub">We typically respond within 24 hours.</p>
       <form id="enquiryForm" onsubmit="submitForm(event)">
         <div class="form-row">
-          <div class="f-group"><label>Your Name</label><input type="text" placeholder="Full name" required></div>
-          <div class="f-group"><label>Phone</label><input type="tel" placeholder="+91 XXXXX XXXXX" required></div>
+          <div class="f-group"><label for="contact-name">Your Name</label><input type="text" id="contact-name" placeholder="Full name" required></div>
+          <div class="f-group"><label for="contact-phone">Phone</label><input type="tel" id="contact-phone" placeholder="+91 XXXXX XXXXX" required></div>
         </div>
-        <div class="f-group"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+        <div class="f-group"><label for="contact-email">Email Address</label><input type="email" id="contact-email" placeholder="your@email.com"></div>
         <div class="f-group">
-          <label>Product Interest</label>
-          <select>
+          <label for="contact-product">Product Interest</label>
+          <select id="contact-product">
             <option value="">Select category…</option>
             <option>Wallets — Bifold, Trifold, Zip-Around</option>
             <option>Belts — Dress, Casual, Reversible</option>
@@ -1330,16 +1341,15 @@ footer::before{
             <option>Multiple Products</option>
           </select>
         </div>
-        <div class="f-group"><label>Approximate Quantity</label><input type="number" placeholder="e.g. 50" min="1"></div>
-        <div class="f-group"><label>Message</label><textarea placeholder="Tell us about your requirements — quantity, customisation, timeline, budget…"></textarea></div>
-        <button type="submit" class="form-submit">Send Enquiry via WhatsApp</button>
+        <div class="f-group"><label for="contact-qty">Approximate Quantity</label><input type="number" id="contact-qty" placeholder="e.g. 50" min="1"></div>
+        <div class="f-group"><label for="contact-msg">Message</label><textarea id="contact-msg" placeholder="Tell us about your requirements — quantity, customisation, timeline, budget…"></textarea></div>
+        <button type="submit" class="form-submit" aria-label="Submit Form to WhatsApp">Send Enquiry via WhatsApp</button>
         <p class="form-note">This will open WhatsApp with your details pre-filled.</p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
@@ -1350,11 +1360,11 @@ footer::before{
     <div>
       <p class="f-col-title">Collection</p>
       <ul class="f-links">
-        <li><a href="#collection">Wallets</a></li>
-        <li><a href="#collection">Belts</a></li>
-        <li><a href="#collection">Card Holders</a></li>
-        <li><a href="#collection">Bags &amp; Cases</a></li>
-        <li><a href="#collection">Accessories</a></li>
+        <li><a href="#collection" onclick="filterFromFooter('wallets')">Wallets</a></li>
+        <li><a href="#collection" onclick="filterFromFooter('belts')">Belts</a></li>
+        <li><a href="#collection" onclick="filterFromFooter('cardholders')">Card Holders</a></li>
+        <li><a href="#collection" onclick="filterFromFooter('bags')">Bags &amp; Cases</a></li>
+        <li><a href="#collection" onclick="filterFromFooter('accessories')">Accessories</a></li>
       </ul>
     </div>
     <div>
@@ -1377,42 +1387,38 @@ footer::before{
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="f-copy">© 2025 TZ Supply Co. All rights reserved. Mumbai, India.</p>
+    <p class="f-copy">© 2026 TZ Supply Co. All rights reserved. Mumbai, India.</p>
     <p class="f-made">Crafted with pride in Mumbai</p>
   </div>
 </footer>
 
-<!-- CART DRAWER -->
-<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-<div class="cart-drawer" id="cartDrawer">
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()" aria-hidden="true"></div>
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
   <div class="cart-head">
-    <span class="cart-head-title">Your Selection</span>
-    <button class="cart-close" onclick="closeCart()">✕</button>
+    <span class="cart-head-title" id="cartTitle">Your Selection</span>
+    <button class="cart-close" aria-label="Close Cart" onclick="closeCart()">✕</button>
   </div>
-  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-items" id="cartItems" aria-live="polite"></div>
   <div class="cart-foot" id="cartFoot" style="display:none;">
     <div class="cart-total-row">
       <span class="cart-total-lbl">Estimated Total</span>
-      <span class="cart-total-val" id="cartTotal">₹0</span>
+      <span class="cart-total-val" id="cartTotal" aria-live="polite">₹0</span>
     </div>
     <button class="cart-wa-btn" onclick="sendCartToWA()">💬 Order via WhatsApp</button>
     <button class="cart-clear" onclick="clearCart()">Clear Selection</button>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
-<div class="lb-overlay" id="lbOverlay" onclick="lbBgClick(event)">
-  <div class="lb-modal" id="lbModal">
-    <!-- Image panel -->
+<div class="lb-overlay" id="lbOverlay" onclick="lbBgClick(event)" aria-hidden="true">
+  <div class="lb-modal" id="lbModal" role="dialog" aria-modal="true" aria-labelledby="lbName">
     <div class="lb-images">
       <div class="lb-slides" id="lbSlides"></div>
-      <button class="lb-nav-btn lb-prev" onclick="lbPrev()">‹</button>
-      <button class="lb-nav-btn lb-next" onclick="lbNext()">›</button>
-      <div class="lb-dots" id="lbDots"></div>
+      <button class="lb-nav-btn lb-prev" aria-label="Previous image" onclick="lbPrev()">‹</button>
+      <button class="lb-nav-btn lb-next" aria-label="Next image" onclick="lbNext()">›</button>
+      <div class="lb-dots" id="lbDots" role="tablist"></div>
     </div>
-    <!-- Info panel -->
     <div class="lb-info">
-      <button class="lb-close" onclick="closeLB()">✕</button>
+      <button class="lb-close" aria-label="Close product details" onclick="closeLB()">✕</button>
       <div class="lb-cat" id="lbCat"></div>
       <div class="lb-name" id="lbName"></div>
       <div class="lb-price" id="lbPrice"></div>
@@ -1428,6 +1434,11 @@ footer::before{
 </div>
 
 <script>
+// ---- DATA LAYER / ANALYTICS ----
+function fireGA4Event(eventName, data) {
+    if (window.trackEvent) window.trackEvent(eventName, data);
+}
+
 // ---- PRODUCTS DATA ----
 const PRODUCTS = [
   {id:1,cat:'wallets',badge:'Bestseller',name:'Slim Bifold Wallet',price:2200,vis:'pv-1',desc:'A minimalist bifold in full-grain leather. 6 card slots, 2 bill compartments. Ages beautifully with daily use.',tags:['Full Grain','Bifold','6 Card Slots']},
@@ -1462,9 +1473,7 @@ const PRODUCTS = [
   {id:30,cat:'accessories',badge:'',name:'Wrist Lanyard',price:950,vis:'pv-4',desc:'Thick loop lanyard with solid brass lobster clasp. Rugged and characterful.',tags:['Brass Clasp','Wrist Loop','Rugged']},
 ];
 
-// Slide variation descriptions per index
 const SLIDE_LABELS = ['Front View', 'Detail & Texture', 'Side Profile'];
-// Slight color shifts for each slide to simulate different angles/lighting
 const SLIDE_MODS = [
   {brightness:1, saturate:1, contrast:1},
   {brightness:.75, saturate:1.3, contrast:1.1},
@@ -1482,25 +1491,27 @@ function renderProducts(cat) {
   const grid = document.getElementById('productGrid');
   const items = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === cat);
   grid.innerHTML = items.map(p => `
-    <div class="p-card" data-id="${p.id}" onclick="openLB(${p.id})">
+    <div class="p-card" tabindex="0" role="button" aria-label="View details for ${p.name}" data-id="${p.id}" onclick="openLB(${p.id})" onkeydown="if(event.key==='Enter') openLB(${p.id})">
       <div class="p-card-img">
-        <div class="p-visual ${p.vis}"><div class="ptx"></div></div>
+        <div class="p-visual ${p.vis}" role="img" aria-label="Leather texture swatch"><div class="ptx"></div></div>
         <div class="p-overlay"></div>
         ${p.badge ? `<div class="p-badge">${p.badge}</div>` : ''}
-        <button class="p-wishlist" onclick="event.stopPropagation();toggleWish(this)" title="Save">♡</button>
+        <button class="p-wishlist" aria-label="Add to wishlist" onclick="event.stopPropagation();toggleWish(this)" title="Save">♡</button>
         <div class="p-info">
           <div class="p-cat">${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)}</div>
           <div class="p-name">${p.name}</div>
           <div class="p-price">From ₹ ${p.price.toLocaleString('en-IN')}</div>
         </div>
         <div class="p-actions">
-          <a class="p-btn-wa" href="${waLink(p)}" target="_blank" onclick="event.stopPropagation()">💬 WhatsApp</a>
-          <button class="p-btn-cart" onclick="event.stopPropagation();addToCart(${p.id})" title="Add to cart">＋</button>
-          <button class="p-btn-detail" title="View details" onclick="event.stopPropagation();openLB(${p.id})">⤢</button>
+          <a class="p-btn-wa" href="${waLink(p)}" target="_blank" onclick="event.stopPropagation();fireGA4Event('contact_wa', {item_id: ${p.id}})">💬 WhatsApp</a>
+          <button class="p-btn-cart" aria-label="Add to cart" onclick="event.stopPropagation();addToCart(${p.id})" title="Add to cart">＋</button>
+          <button class="p-btn-detail" aria-label="View details" title="View details" onclick="event.stopPropagation();openLB(${p.id})">⤢</button>
         </div>
       </div>
     </div>
   `).join('');
+  
+  fireGA4Event('view_item_list', { item_list_name: cat, items: items });
 }
 
 function waLink(p) {
@@ -1515,7 +1526,8 @@ function openLB(id) {
   lbProduct = p;
   lbSlide = 0;
 
-  // Build slides
+  fireGA4Event('view_item', { item_id: p.id, item_name: p.name, value: p.price });
+
   const slides = document.getElementById('lbSlides');
   slides.innerHTML = Array.from({length: LB_SLIDE_COUNT}, (_, i) => `
     <div class="lb-slide">
@@ -1527,13 +1539,11 @@ function openLB(id) {
     </div>
   `).join('');
 
-  // Build dots
   const dots = document.getElementById('lbDots');
   dots.innerHTML = Array.from({length: LB_SLIDE_COUNT}, (_, i) =>
-    `<div class="lb-dot ${i===0?'active':''}" onclick="lbGoTo(${i})"></div>`
+    `<button class="lb-dot ${i===0?'active':''}" role="tab" aria-label="View slide ${i+1}" onclick="lbGoTo(${i})"></button>`
   ).join('');
 
-  // Populate info
   document.getElementById('lbCat').textContent = p.cat.charAt(0).toUpperCase()+p.cat.slice(1);
   document.getElementById('lbName').textContent = p.name;
   document.getElementById('lbPrice').textContent = 'From ₹ ' + p.price.toLocaleString('en-IN');
@@ -1544,11 +1554,14 @@ function openLB(id) {
 
   lbUpdateSlide();
   document.getElementById('lbOverlay').classList.add('open');
+  document.getElementById('lbOverlay').setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  document.querySelector('.lb-close').focus();
 }
 
 function closeLB() {
   document.getElementById('lbOverlay').classList.remove('open');
+  document.getElementById('lbOverlay').setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 
@@ -1558,14 +1571,16 @@ function lbBgClick(e) {
 
 function lbUpdateSlide() {
   document.getElementById('lbSlides').style.transform = `translateX(-${lbSlide * 100}%)`;
-  document.querySelectorAll('.lb-dot').forEach((d,i) => d.classList.toggle('active', i===lbSlide));
+  document.querySelectorAll('.lb-dot').forEach((d,i) => {
+      d.classList.toggle('active', i===lbSlide);
+      d.setAttribute('aria-selected', i===lbSlide);
+  });
 }
 
 function lbNext() { lbSlide = (lbSlide + 1) % LB_SLIDE_COUNT; lbUpdateSlide(); }
 function lbPrev() { lbSlide = (lbSlide - 1 + LB_SLIDE_COUNT) % LB_SLIDE_COUNT; lbUpdateSlide(); }
 function lbGoTo(i) { lbSlide = i; lbUpdateSlide(); }
 
-// Keyboard nav for lightbox
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lbOverlay').classList.contains('open')) return;
   if (e.key === 'Escape') closeLB();
@@ -1573,7 +1588,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') lbPrev();
 });
 
-// Touch swipe for lightbox
 let lbTouchX = null;
 document.getElementById('lbSlides').addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, {passive:true});
 document.getElementById('lbSlides').addEventListener('touchend', e => {
@@ -1587,14 +1601,22 @@ document.getElementById('lbSlides').addEventListener('touchend', e => {
 document.getElementById('filterBar').addEventListener('click', e => {
   const btn = e.target.closest('.filter-btn');
   if (!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+  });
   btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
   activeFilter = btn.dataset.cat;
   renderProducts(activeFilter);
   setupReveal();
 });
 
-// ---- WISHLIST ----
+function filterFromFooter(cat) {
+    const btn = document.querySelector(`.filter-btn[data-cat="${cat}"]`);
+    if(btn) btn.click();
+}
+
 function toggleWish(btn) {
   btn.classList.toggle('liked');
   btn.textContent = btn.classList.contains('liked') ? '♥' : '♡';
@@ -1606,10 +1628,18 @@ function addToCart(id) {
   const exists = cart.find(x => x.id === id);
   if (exists) { exists.qty = (exists.qty||1) + 1; }
   else { cart.push({...p, qty:1}); }
+  
+  fireGA4Event('add_to_cart', { item_id: p.id, item_name: p.name, value: p.price, quantity: 1 });
+  
   updateCartUI();
   openCart();
 }
-function removeFromCart(id) { cart = cart.filter(x => x.id !== id); updateCartUI(); }
+function removeFromCart(id) { 
+    const p = cart.find(x => x.id === id);
+    if(p) fireGA4Event('remove_from_cart', { item_id: p.id, item_name: p.name });
+    cart = cart.filter(x => x.id !== id); 
+    updateCartUI(); 
+}
 function clearCart() { cart = []; updateCartUI(); }
 
 function updateCartUI() {
@@ -1630,7 +1660,7 @@ function updateCartUI() {
         <div class="ci-name">${p.name}${(p.qty||1)>1?' ×'+p.qty:''}</div>
         <div class="ci-price">₹ ${((p.price)*(p.qty||1)).toLocaleString('en-IN')}</div>
       </div>
-      <button class="ci-remove" onclick="removeFromCart(${p.id})">✕</button>
+      <button class="ci-remove" aria-label="Remove item" onclick="removeFromCart(${p.id})">✕</button>
     </div>
   `).join('');
   const total = cart.reduce((s,x)=>s+x.price*(x.qty||1),0);
@@ -1641,6 +1671,9 @@ function sendCartToWA() {
   if (!cart.length) return;
   const lines = cart.map(p=>`• ${p.name} (₹${p.price.toLocaleString('en-IN')})${(p.qty||1)>1?' ×'+p.qty:''}`).join('\n');
   const total = cart.reduce((s,x)=>s+x.price*(x.qty||1),0);
+  
+  fireGA4Event('begin_checkout', { items: cart, value: total });
+  
   const msg = encodeURIComponent(`Hi TZ Supply Co.! 👋\n\nI'd like to order:\n\n${lines}\n\n💰 Total: ₹${total.toLocaleString('en-IN')}\n\nPlease share payment and shipping details. Thank you!`);
   window.open(`https://wa.me/919820980035?text=${msg}`,'_blank');
 }
@@ -1648,11 +1681,12 @@ function sendCartToWA() {
 function openCart() {
   document.getElementById('cartOverlay').classList.add('open');
   document.getElementById('cartDrawer').classList.add('open');
-  updateCartUI();
+  document.getElementById('cartOverlay').setAttribute('aria-hidden', 'false');
 }
 function closeCart() {
   document.getElementById('cartOverlay').classList.remove('open');
   document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').setAttribute('aria-hidden', 'true');
 }
 
 // ---- CONTACT FORM → WA ----
@@ -1666,6 +1700,9 @@ function submitForm(e) {
   const product = inputs[3].value || 'N/A';
   const qty = inputs[4].value || 'N/A';
   const msg = inputs[5].value || '';
+  
+  fireGA4Event('generate_lead', { product_interest: product });
+
   const wa = encodeURIComponent(`Hi TZ Supply Co.! 👋\n\nBulk Order Enquiry:\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n✉️ Email: ${email}\n🛍 Product: ${product}\n📦 Quantity: ${qty}\n\n💬 Message:\n${msg}\n\nPlease get in touch. Thank you!`);
   window.open(`https://wa.me/919820980035?text=${wa}`,'_blank');
 }
@@ -1675,12 +1712,15 @@ window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('stuck', window.scrollY > 60);
 });
 function toggleMenu() {
+  const isExpanded = document.getElementById('navLinks').classList.contains('open');
   document.getElementById('navLinks').classList.toggle('open');
   document.getElementById('ham').classList.toggle('open');
+  document.getElementById('ham').setAttribute('aria-expanded', !isExpanded);
 }
 function closeMenu() {
   document.getElementById('navLinks').classList.remove('open');
   document.getElementById('ham').classList.remove('open');
+  document.getElementById('ham').setAttribute('aria-expanded', 'false');
 }
 
 // ---- CURSOR ----
